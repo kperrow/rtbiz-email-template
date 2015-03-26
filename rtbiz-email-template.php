@@ -34,7 +34,9 @@ add_action( 'rt_biz_init', 'rt_email_template_init', 1 );
 
 
 function rt_email_template_init(){
-	add_filter( 'rthd_email_templates_settings', 'add_rthd_email_templates_settings', 10, 1 );
+	if ( function_exists( 'rthd_get_default_email_template' ) ){
+		add_filter( 'rthd_email_templates_settings', 'add_rthd_email_templates_settings', 10, 1 );
+	}
 }
 
 function add_rthd_email_templates_settings( $email_template_tab ){
@@ -59,7 +61,7 @@ function add_rthd_email_templates_settings( $email_template_tab ){
 				'type'     => 'text',
 				'title'    => __( 'Subject' ),
 				'subtitle' => __( 'Title when a new ticket is created' ),
-				'default'  => '{ticket_title}',
+				'default'  => rthd_get_default_email_template('rthd_new_ticket_email_title'),
 			),
 			array(
 				'id'          => 'rthd_email_template_new_ticket_created_author',
@@ -67,7 +69,7 @@ function add_rthd_email_templates_settings( $email_template_tab ){
 				'title'       => __( 'Body' ),
 				'subtitle'    => __( 'Helpdesk will use this email template' ),
 				'desc'        => __( 'Helpdesk will use this email template for sending emails, you can use placeholder {ticket_body}' ),
-				'default'     => 'Thank you for opening a new support ticket. We will look into your request and respond as soon as possible.<br/>{ticket_body}',
+				'default'     =>  rthd_get_default_email_template('rthd_email_template_new_ticket_created_author'),
 			)
 		) );
 
@@ -82,7 +84,7 @@ function add_rthd_email_templates_settings( $email_template_tab ){
 				'type'     => 'text',
 				'title'    => __( 'Subject' ),
 				'subtitle' => __( 'Title when a new ticket is created' ),
-				'default'  => '{ticket_title}',
+				'default'  => rthd_get_default_email_template('rthd_new_ticket_email_title_contacts'),
 			),
 			array(
 				'id'          => 'rthd_email_template_new_ticket_created_contacts',
@@ -90,7 +92,7 @@ function add_rthd_email_templates_settings( $email_template_tab ){
 				'title'       => __( 'Body' ),
 				'subtitle'    => __( 'Helpdesk will use this email template' ),
 				'desc'        => __( 'Helpdesk will use this email template for sending emails, you can use placeholder {ticket_author} and {ticket_body}' ),
-				'default'     => 'A new support ticket created by <strong> {ticket_author} </strong>. You have been subscribed to this ticket.<br/>{ticket_body}',
+				'default'     => rthd_get_default_email_template('rthd_email_template_new_ticket_created_contacts'),
 			)
 		) );
 
@@ -105,7 +107,7 @@ function add_rthd_email_templates_settings( $email_template_tab ){
 				'type'     => 'text',
 				'title'    => __( 'Subject' ),
 				'subtitle' => __( 'Title when a new ticket is created' ),
-				'default'  => '{ticket_title}',
+				'default'  => rthd_get_default_email_template('rthd_new_ticket_email_title_group'),
 			),
 			array(
 				'id'          => 'rthd_email_template_new_ticket_created_group_notification',
@@ -113,7 +115,7 @@ function add_rthd_email_templates_settings( $email_template_tab ){
 				'title'       => __( 'Body' ),
 				'subtitle'    => __( 'Helpdesk will use this email template' ),
 				'desc'        => __( 'Helpdesk will use this email template for sending emails, you can use placeholder {ticket_author}, {ticket_assignee}, {ticket_offerings} and {ticket_body}' ),
-				'default'     => 'A new support ticket created by <strong> {ticket_author} </strong>. <br/>Ticket Assigned to <strong>{ticket_assignee}</strong>{ticket_offerings} {ticket_body}',
+				'default'     => rthd_get_default_email_template('rthd_email_template_new_ticket_created_group_notification'),
 			)
 		) );
 
@@ -128,7 +130,7 @@ function add_rthd_email_templates_settings( $email_template_tab ){
 				'type'     => 'text',
 				'title'    => __( 'Subject' ),
 				'subtitle' => __( 'Title when a new ticket is created' ),
-				'default'  => '{ticket_title}',
+				'default'  => rthd_get_default_email_template('rthd_new_ticket_email_title_assignee'),
 			),
 			array(
 				'id'          => 'rthd_email_template_new_ticket_created_assignee',
@@ -136,7 +138,7 @@ function add_rthd_email_templates_settings( $email_template_tab ){
 				'title'       => __( 'Body' ),
 				'subtitle'    => __( 'Helpdesk will use this email template' ),
 				'desc'        => __( 'Helpdesk will use this email template for sending emails, you can use placeholder {ticket_author}, {ticket_offerings} and {ticket_body}' ),
-				'default'     => 'A new support ticket created by <strong> {ticket_author} </strong> is assigned to you. <br/></strong>{ticket_offerings} {ticket_body}',
+				'default'     => rthd_get_default_email_template('rthd_email_template_new_ticket_created_assignee'),
 			)
 		) );
 
@@ -151,7 +153,7 @@ function add_rthd_email_templates_settings( $email_template_tab ){
 				'type'     => 'text',
 				'title'    => __( 'Subject' ),
 				'subtitle' => __( 'Title when a new ticket is created' ),
-				'default'  => '{ticket_title}',
+				'default'  => rthd_get_default_email_template('rthd_new_ticket_email_title_subscriber'),
 			),
 			array(
 				'id'          => 'rthd_email_template_new_ticket_created_subscriber',
@@ -159,7 +161,7 @@ function add_rthd_email_templates_settings( $email_template_tab ){
 				'title'       => __( 'Body' ),
 				'subtitle'    => __( 'Helpdesk will use this email template' ),
 				'desc'        => __( 'Helpdesk will use this email template for sending emails, you can use placeholder {ticket_author}, {ticket_assignee}, {ticket_offerings} and {ticket_body}' ),
-				'default'     => 'A new support ticket created by <strong>{ticket_author}</strong>. You have been subscribed to this ticket. <br/>Ticket Assigned to <strong>{ticket_assignee}</strong>{ticket_offerings} {ticket_body}',
+				'default'     => rthd_get_default_email_template('rthd_email_template_new_ticket_created_subscriber'),
 			)
 		) );
 
@@ -174,7 +176,7 @@ function add_rthd_email_templates_settings( $email_template_tab ){
 				'type'     => 'text',
 				'title'    => __( 'Subject' ),
 				'subtitle' => __( 'Title when a new follow up is added' ),
-				'default'  => '{ticket_title}',
+				'default'  => rthd_get_default_email_template('rthd_new_followup_email_title'),
 			),
 			array(
 				'id'          => 'rthd_email_template_followup_add',
@@ -182,7 +184,7 @@ function add_rthd_email_templates_settings( $email_template_tab ){
 				'title'       => __( 'Body' ),
 				'subtitle'    => __( 'Helpdesk will use this email template' ),
 				'desc'        => __( 'Helpdesk will use this email template for sending emails, you can use placeholder {followup_author} and {followup_content}' ),
-				'default'     => 'New Followup Added by <strong>{followup_author}</strong><hr style="color: #DCEAF5;" /><div style="display: inline-block">{followup_content}</div>',
+				'default'     => rthd_get_default_email_template('rthd_email_template_followup_add'),
 			)
 		) );
 
@@ -197,7 +199,7 @@ function add_rthd_email_templates_settings( $email_template_tab ){
 				'type'     => 'text',
 				'title'    => __( 'Subject' ),
 				'subtitle' => __( 'Title when a new follow up is added' ),
-				'default'  => '{ticket_title}',
+				'default'  => rthd_get_default_email_template('rthd_new_followup_email_title_private'),
 			),
 			array(
 				'id'          => 'rthd_email_template_followup_add_private',
@@ -205,7 +207,7 @@ function add_rthd_email_templates_settings( $email_template_tab ){
 				'title'       => __( 'Body' ),
 				'subtitle'    => __( 'Helpdesk will use this email template' ),
 				'desc'        => __( 'Helpdesk will use this email template for sending emails, you can use placeholder {followup_author} and {followup_content}' ),
-				'default'     => '<br /> A private followup has been added by <strong>{followup_author}</strong>. Please go to ticket to view content.',
+				'default'     => rthd_get_default_email_template('rthd_email_template_followup_add_private'),
 			)
 		) );
 
@@ -220,7 +222,7 @@ function add_rthd_email_templates_settings( $email_template_tab ){
 				'type'     => 'text',
 				'title'    => __( 'Subject' ),
 				'subtitle' => __( 'Title when a follow up is deleted' ),
-				'default'  => '{ticket_title}',
+				'default'  => rthd_get_default_email_template('rthd_delete_followup_email_title'),
 			),
 			array(
 				'id'          => 'rthd_email_template_followup_deleted',
@@ -228,7 +230,7 @@ function add_rthd_email_templates_settings( $email_template_tab ){
 				'title'       => __( 'Body' ),
 				'subtitle'    => __( 'Helpdesk will use this email template' ),
 				'desc'        => __( 'Helpdesk will use this email template for sending emails, you can use placeholder {followup_deleted_by} and {followup_content}' ),
-				'default'     => 'A Followup is deleted by <Strong>{followup_deleted_by}</Strong><hr style="color: #DCEAF5;" /><div  style="display: inline-block">{followup_content}</div>',
+				'default'     => rthd_get_default_email_template('rthd_email_template_followup_deleted'),
 			)
 		) );
 
@@ -243,7 +245,7 @@ function add_rthd_email_templates_settings( $email_template_tab ){
 				'type'     => 'text',
 				'title'    => __( 'Subject' ),
 				'subtitle' => __( 'Title when a follow up is deleted' ),
-				'default'  => '{ticket_title}',
+				'default'  => rthd_get_default_email_template('rthd_delete_followup_email_title_private'),
 			),
 			array(
 				'id'          => 'rthd_email_template_followup_deleted_private',
@@ -251,7 +253,7 @@ function add_rthd_email_templates_settings( $email_template_tab ){
 				'title'       => __( 'Body' ),
 				'subtitle'    => __( 'Helpdesk will use this email template' ),
 				'desc'        => __( 'Helpdesk will use this email template for sending emails, you can use placeholder {followup_deleted_by} and {followup_content}' ),
-				'default'     => 'A Followup is deleted by <Strong>{followup_deleted_by}</Strong>',
+				'default'     => rthd_get_default_email_template('rthd_email_template_followup_deleted_private'),
 			)
 		) );
 
@@ -266,7 +268,7 @@ function add_rthd_email_templates_settings( $email_template_tab ){
 				'type'     => 'text',
 				'title'    => __( 'Subject' ),
 				'subtitle' => __( 'Title when an existing follow up is updated' ),
-				'default'  => '{ticket_title}',
+				'default'  => rthd_get_default_email_template('rthd_update_followup_email_title'),
 			),
 			array(
 				'id'          => 'rthd_email_template_followup_updated_private',
@@ -274,7 +276,7 @@ function add_rthd_email_templates_settings( $email_template_tab ){
 				'title'       => __( 'Body' ),
 				'subtitle'    => __( 'Helpdesk will use this email template' ),
 				'desc'        => __( 'Helpdesk will use this email template for sending emails, you can use placeholder {followup_updated_by}, {visibility_diff} and {followup_diff}' ),
-				'default'     => '<div> A Followup Updated by <strong>{followup_updated_by}.</strong></div> <br/><div> The changes are as follows: </div><br/> {visibility_diff} {followup_diff}',
+				'default'     => rthd_get_default_email_template('rthd_email_template_followup_updated_private'),
 			)
 		) );
 
@@ -289,7 +291,7 @@ function add_rthd_email_templates_settings( $email_template_tab ){
 				'type'     => 'text',
 				'title'    => __( 'Subject' ),
 				'subtitle' => __( 'Title when an existing follow up is updated' ),
-				'default'  => '{ticket_title}',
+				'default'  => rthd_get_default_email_template('rthd_update_followup_email_title_private'),
 			),
 			array(
 				'id'          => 'rthd_email_template_followup_updated_private',
@@ -297,7 +299,7 @@ function add_rthd_email_templates_settings( $email_template_tab ){
 				'title'       => __( 'Body' ),
 				'subtitle'    => __( 'Helpdesk will use this email template' ),
 				'desc'        => __( 'Helpdesk will use this email template for sending emails, you can use placeholder {followup_updated_by} and {visibility_diff} ' ),
-				'default'     => '<div><br /> A <strong>private</strong> followup has been edited by <strong>{followup_updated_by}</strong>. Please go to ticket to view content.</div> {visibility_diff}',
+				'default'     => rthd_get_default_email_template('rthd_email_template_followup_updated_private'),
 			)
 		) );
 
@@ -312,7 +314,7 @@ function add_rthd_email_templates_settings( $email_template_tab ){
 				'type'     => 'text',
 				'title'    => __( 'Subject' ),
 				'subtitle' => __( 'Title when a user subscribes to a ticket' ),
-				'default'  => '{ticket_title}',
+				'default'  => rthd_get_default_email_template('rthd_ticket_subscribe_email_title'),
 			),
 			array(
 				'id'          => 'rthd_email_template_ticket_subscribed',
@@ -320,7 +322,7 @@ function add_rthd_email_templates_settings( $email_template_tab ){
 				'title'       => __( 'Body' ),
 				'subtitle'    => __( 'Helpdesk will use this email template' ),
 				'desc'        => __( 'Helpdesk will use this email template for sending emails, you can use placeholder {ticket_subscribers}' ),
-				'default'     => '{ticket_subscribers} have been subscribed to this ticket',
+				'default'     => rthd_get_default_email_template('rthd_email_template_ticket_subscribed'),
 			)
 		) );
 
@@ -336,7 +338,7 @@ function add_rthd_email_templates_settings( $email_template_tab ){
 				'type'     => 'text',
 				'title'    => __( 'Subject' ),
 				'subtitle' => __( 'Title when a user unsubscribes to a ticket' ),
-				'default'  => '{ticket_title}',
+				'default'  => rthd_get_default_email_template('rthd_ticket_unsubscribe_email_title'),
 			),
 			array(
 				'id'          => 'rthd_email_template_ticket_unsubscribed',
@@ -344,7 +346,7 @@ function add_rthd_email_templates_settings( $email_template_tab ){
 				'title'       => __( 'Body' ),
 				'subtitle'    => __( 'Helpdesk will use this email template' ),
 				'desc'        => __( 'Helpdesk will use this email template for sending emails, you can use placeholder {ticket_unsubscribers}' ),
-				'default'     => '{ticket_unsubscribers} have been un-subscribed to this ticket',
+				'default'     => rthd_get_default_email_template('rthd_email_template_ticket_unsubscribed'),
 			)
 		) );
 
@@ -359,7 +361,7 @@ function add_rthd_email_templates_settings( $email_template_tab ){
 				'type'     => 'text',
 				'title'    => __( 'Subject' ),
 				'subtitle' => __( 'Title when an existing ticket is reassigned to another user' ),
-				'default'  => '{ticket_title}',
+				'default'  => rthd_get_default_email_template('rthd_ticket_reassign_email_title_old_assignee'),
 			),
 			array(
 				'id'          => 'rthd_email_template_ticket_reassigned_old_assignee',
@@ -367,7 +369,7 @@ function add_rthd_email_templates_settings( $email_template_tab ){
 				'title'       => __( 'Body' ),
 				'subtitle'    => __( 'Helpdesk will use this email template' ),
 				'desc'        => __( 'Helpdesk will use this email template for sending emails.' ),
-				'default'     => 'You are no longer responsible for this ticket.',
+				'default'     => rthd_get_default_email_template('rthd_email_template_ticket_reassigned_old_assignee'),
 			)
 		) );
 
@@ -382,7 +384,7 @@ function add_rthd_email_templates_settings( $email_template_tab ){
 				'type'     => 'text',
 				'title'    => __( 'Subject' ),
 				'subtitle' => __( 'Title when an existing ticket is reassigned to another user' ),
-				'default'  => '{ticket_title}',
+				'default'  => rthd_get_default_email_template('rthd_ticket_reassign_email_title'),
 			),
 			array(
 				'id'          => 'rthd_email_template_ticket_reassigned_new_assignee',
@@ -390,7 +392,7 @@ function add_rthd_email_templates_settings( $email_template_tab ){
 				'title'       => __( 'Body' ),
 				'subtitle'    => __( 'Helpdesk will use this email template' ),
 				'desc'        => __( 'Helpdesk will use this email template for sending emails, you can use placeholder {new_ticket_assignee}' ),
-				'default'     => 'A ticket is reassigned to {new_ticket_assignee}.',
+				'default'     => rthd_get_default_email_template('rthd_email_template_ticket_reassigned_new_assignee'),
 			)
 		) );
 
@@ -405,7 +407,7 @@ function add_rthd_email_templates_settings( $email_template_tab ){
 				'type'     => 'text',
 				'title'    => __( 'Subject' ),
 				'subtitle' => __( 'Title when a ticket is updated' ),
-				'default'  => '{ticket_title}',
+				'default'  => rthd_get_default_email_template('rthd_update_ticket_email_title'),
 			),
 			array(
 				'id'          => 'rthd_email_template_ticket_updated',
@@ -413,7 +415,7 @@ function add_rthd_email_templates_settings( $email_template_tab ){
 				'title'       => __( 'Body' ),
 				'subtitle'    => __( 'Helpdesk will use this email template' ),
 				'desc'        => __( 'Helpdesk will use this email template for sending emails, you can use placeholder {ticket_updated_by} and {ticket_diference}' ),
-				'default'     => '<br /> Ticket updated by : <strong>{ticket_updated_by}</strong><br/>. {ticket_diference}',
+				'default'     => rthd_get_default_email_template('rthd_email_template_ticket_updated'),
 			)
 		) );
 
