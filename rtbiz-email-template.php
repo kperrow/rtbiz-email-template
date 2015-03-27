@@ -281,12 +281,12 @@ function add_rthd_email_templates_settings( $email_template_tab ){
 				'desc'        => __( 'You can use {module_name}, {ticket_id}, {ticket_title} and {offerings_name} placeholder in your title.' ),
 			),
 			array(
-				'id'          => 'rthd_email_template_followup_updated_private',
+				'id'          => 'rthd_email_template_followup_updated',
 				'type'        => 'editor',
 				'title'       => __( 'Body' ),
 				'subtitle'    => __( 'Helpdesk will use this email template' ),
 				'desc'        => __( 'Helpdesk will use this email template for sending emails, you can use placeholder {followup_updated_by}, {visibility_diff} and {followup_diff}' ),
-				'default'     => rthd_get_default_email_template('rthd_email_template_followup_updated_private'),
+				'default'     => rthd_get_default_email_template('rthd_email_template_followup_updated'),
 			)
 		) );
 
