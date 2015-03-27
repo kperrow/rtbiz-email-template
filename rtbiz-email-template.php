@@ -52,7 +52,7 @@ function add_rthd_email_templates_settings( $email_template_tab ){
 
 	$email_template_tab[] = array(
 		'icon'        => 'el-icon-edit',
-		'title'       => __( 'Ticket Created (Author)' ),
+		'title'       => __( 'Ticket Created (Creator)' ),
 		'permissions' => $admin_cap,
 		'subsection'  => true,
 		'fields'      => array(
@@ -61,6 +61,7 @@ function add_rthd_email_templates_settings( $email_template_tab ){
 				'type'     => 'text',
 				'title'    => __( 'Subject' ),
 				'subtitle' => __( 'Title when a new ticket is created' ),
+				'desc'        => __( 'You can use {module_name}, {ticket_id}, {ticket_title} and {offerings_name} placeholder in your title.' ),
 				'default'  => rthd_get_default_email_template('rthd_new_ticket_email_title'),
 			),
 			array(
@@ -84,6 +85,7 @@ function add_rthd_email_templates_settings( $email_template_tab ){
 				'type'     => 'text',
 				'title'    => __( 'Subject' ),
 				'subtitle' => __( 'Title when a new ticket is created' ),
+				'desc'        => __( 'You can use {module_name}, {ticket_id}, {ticket_title} and {offerings_name} placeholder in your title.' ),
 				'default'  => rthd_get_default_email_template('rthd_new_ticket_email_title_contacts'),
 			),
 			array(
@@ -108,6 +110,7 @@ function add_rthd_email_templates_settings( $email_template_tab ){
 				'title'    => __( 'Subject' ),
 				'subtitle' => __( 'Title when a new ticket is created' ),
 				'default'  => rthd_get_default_email_template('rthd_new_ticket_email_title_group'),
+				'desc'        => __( 'You can use {module_name}, {ticket_id}, {ticket_title} and {offerings_name} placeholder in your title.' ),
 			),
 			array(
 				'id'          => 'rthd_email_template_new_ticket_created_group_notification',
@@ -131,6 +134,7 @@ function add_rthd_email_templates_settings( $email_template_tab ){
 				'title'    => __( 'Subject' ),
 				'subtitle' => __( 'Title when a new ticket is created' ),
 				'default'  => rthd_get_default_email_template('rthd_new_ticket_email_title_assignee'),
+				'desc'        => __( 'You can use {module_name}, {ticket_id}, {ticket_title} and {offerings_name} placeholder in your title.' ),
 			),
 			array(
 				'id'          => 'rthd_email_template_new_ticket_created_assignee',
@@ -154,6 +158,7 @@ function add_rthd_email_templates_settings( $email_template_tab ){
 				'title'    => __( 'Subject' ),
 				'subtitle' => __( 'Title when a new ticket is created' ),
 				'default'  => rthd_get_default_email_template('rthd_new_ticket_email_title_subscriber'),
+				'desc'        => __( 'You can use {module_name}, {ticket_id}, {ticket_title} and {offerings_name} placeholder in your title.' ),
 			),
 			array(
 				'id'          => 'rthd_email_template_new_ticket_created_subscriber',
@@ -177,6 +182,7 @@ function add_rthd_email_templates_settings( $email_template_tab ){
 				'title'    => __( 'Subject' ),
 				'subtitle' => __( 'Title when a new follow up is added' ),
 				'default'  => rthd_get_default_email_template('rthd_new_followup_email_title'),
+				'desc'        => __( 'You can use {module_name}, {ticket_id}, {ticket_title} and {offerings_name} placeholder in your title.' ),
 			),
 			array(
 				'id'          => 'rthd_email_template_followup_add',
@@ -200,6 +206,7 @@ function add_rthd_email_templates_settings( $email_template_tab ){
 				'title'    => __( 'Subject' ),
 				'subtitle' => __( 'Title when a new follow up is added' ),
 				'default'  => rthd_get_default_email_template('rthd_new_followup_email_title_private'),
+				'desc'        => __( 'You can use {module_name}, {ticket_id}, {ticket_title} and {offerings_name} placeholder in your title.' ),
 			),
 			array(
 				'id'          => 'rthd_email_template_followup_add_private',
@@ -223,6 +230,7 @@ function add_rthd_email_templates_settings( $email_template_tab ){
 				'title'    => __( 'Subject' ),
 				'subtitle' => __( 'Title when a follow up is deleted' ),
 				'default'  => rthd_get_default_email_template('rthd_delete_followup_email_title'),
+				'desc'        => __( 'You can use {module_name}, {ticket_id}, {ticket_title} and {offerings_name} placeholder in your title.' ),
 			),
 			array(
 				'id'          => 'rthd_email_template_followup_deleted',
@@ -246,6 +254,7 @@ function add_rthd_email_templates_settings( $email_template_tab ){
 				'title'    => __( 'Subject' ),
 				'subtitle' => __( 'Title when a follow up is deleted' ),
 				'default'  => rthd_get_default_email_template('rthd_delete_followup_email_title_private'),
+				'desc'        => __( 'You can use {module_name}, {ticket_id}, {ticket_title} and {offerings_name} placeholder in your title.' ),
 			),
 			array(
 				'id'          => 'rthd_email_template_followup_deleted_private',
@@ -269,6 +278,7 @@ function add_rthd_email_templates_settings( $email_template_tab ){
 				'title'    => __( 'Subject' ),
 				'subtitle' => __( 'Title when an existing follow up is updated' ),
 				'default'  => rthd_get_default_email_template('rthd_update_followup_email_title'),
+				'desc'        => __( 'You can use {module_name}, {ticket_id}, {ticket_title} and {offerings_name} placeholder in your title.' ),
 			),
 			array(
 				'id'          => 'rthd_email_template_followup_updated_private',
@@ -292,6 +302,7 @@ function add_rthd_email_templates_settings( $email_template_tab ){
 				'title'    => __( 'Subject' ),
 				'subtitle' => __( 'Title when an existing follow up is updated' ),
 				'default'  => rthd_get_default_email_template('rthd_update_followup_email_title_private'),
+				'desc'        => __( 'You can use {module_name}, {ticket_id}, {ticket_title} and {offerings_name} placeholder in your title.' ),
 			),
 			array(
 				'id'          => 'rthd_email_template_followup_updated_private',
@@ -315,6 +326,7 @@ function add_rthd_email_templates_settings( $email_template_tab ){
 				'title'    => __( 'Subject' ),
 				'subtitle' => __( 'Title when a user subscribes to a ticket' ),
 				'default'  => rthd_get_default_email_template('rthd_ticket_subscribe_email_title'),
+				'desc'        => __( 'You can use {module_name}, {ticket_id}, {ticket_title} and {offerings_name} placeholder in your title.' ),
 			),
 			array(
 				'id'          => 'rthd_email_template_ticket_subscribed',
@@ -339,6 +351,7 @@ function add_rthd_email_templates_settings( $email_template_tab ){
 				'title'    => __( 'Subject' ),
 				'subtitle' => __( 'Title when a user unsubscribes to a ticket' ),
 				'default'  => rthd_get_default_email_template('rthd_ticket_unsubscribe_email_title'),
+				'desc'        => __( 'You can use {module_name}, {ticket_id}, {ticket_title} and {offerings_name} placeholder in your title.' ),
 			),
 			array(
 				'id'          => 'rthd_email_template_ticket_unsubscribed',
@@ -362,6 +375,7 @@ function add_rthd_email_templates_settings( $email_template_tab ){
 				'title'    => __( 'Subject' ),
 				'subtitle' => __( 'Title when an existing ticket is reassigned to another user' ),
 				'default'  => rthd_get_default_email_template('rthd_ticket_reassign_email_title_old_assignee'),
+				'desc'        => __( 'You can use {module_name}, {ticket_id}, {ticket_title} and {offerings_name} placeholder in your title.' ),
 			),
 			array(
 				'id'          => 'rthd_email_template_ticket_reassigned_old_assignee',
@@ -385,6 +399,7 @@ function add_rthd_email_templates_settings( $email_template_tab ){
 				'title'    => __( 'Subject' ),
 				'subtitle' => __( 'Title when an existing ticket is reassigned to another user' ),
 				'default'  => rthd_get_default_email_template('rthd_ticket_reassign_email_title'),
+				'desc'        => __( 'You can use {module_name}, {ticket_id}, {ticket_title} and {offerings_name} placeholder in your title.' ),
 			),
 			array(
 				'id'          => 'rthd_email_template_ticket_reassigned_new_assignee',
@@ -408,6 +423,7 @@ function add_rthd_email_templates_settings( $email_template_tab ){
 				'title'    => __( 'Subject' ),
 				'subtitle' => __( 'Title when a ticket is updated' ),
 				'default'  => rthd_get_default_email_template('rthd_update_ticket_email_title'),
+				'desc'        => __( 'You can use {module_name}, {ticket_id}, {ticket_title} and {offerings_name} placeholder in your title.' ),
 			),
 			array(
 				'id'          => 'rthd_email_template_ticket_updated',
