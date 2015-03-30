@@ -37,6 +37,48 @@ function rt_email_template_init(){
 	if ( function_exists( 'rthd_get_default_email_template' ) ){
 		add_filter( 'rthd_email_templates_settings', 'add_rthd_email_templates_settings', 10, 1 );
 	}
+	add_filter( 'rt_biz_add_addon_settings', 'add_rt_biz_addon_template_setting', 10, 1 );
+}
+
+function add_rt_biz_addon_template_setting( $addon_tab ){
+	$admin_cap  = rt_biz_get_access_role_cap( RT_HD_TEXT_DOMAIN, 'admin' );
+	$modules = rt_biz_get_modules();
+	foreach ( $modules as $key => $value ){
+		if ( ! empty( $value['email_template_support'] ) ) {
+			foreach ( $value['email_template_support'] as $cpt ) {
+				$addon_tab[] = array(
+					'icon'        => 'el-icon-wrench',
+					'title'       => __( 'Email Templates' ),
+					'permissions' => $admin_cap,
+					'subsection'  => true,
+					'fields'      => array(
+						array(
+							'id'       => 'rt_biz_email_template_setting_' .$cpt,
+							'type'     => 'switch',
+							'title'    => __( 'Email Template for '.$value['label'] ),
+							'subtitle' => __( 'To enable/disable Email template add-on for '. $cpt ),
+							'default'  => true,
+							'on'       => __( 'On' ),
+							'off'      => __( 'Off' ),
+						),
+					),
+				);
+			}
+		}
+    }
+	return $addon_tab;
+}
+
+/**
+ * check if rtbiz email template setting is on or not
+ * @return bool
+ */
+function rt_biz_is_email_template_on( $cpt ){
+	$redux = rt_biz_get_redux_settings();
+	if ( isset( $redux['rt_biz_email_template_setting_' . $cpt] ) && 1 == $redux['rt_biz_email_template_setting_'. $cpt] ){
+		return true;
+	}
+	return false;
 }
 
 function add_rthd_email_templates_settings( $email_template_tab ){
