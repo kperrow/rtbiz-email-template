@@ -3,7 +3,7 @@
 /**
  * Plugin Name: rtBiz Email Template
  * Plugin URI: http://rtcamp.com/
- * Description: A Addon for rtbiz email templates.
+ * Description: An Addon for rtbiz email templates.
  * Version: 0.5
  * Author: rtCamp
  * Author URI: http://rtcamp.com
